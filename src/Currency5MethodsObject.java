@@ -21,7 +21,7 @@ class Currency {
 }
 
 
-public class Currancy5MethodsObject {
+public class Currency5MethodsObject {
     public static void main(String[] args) {
         String[] inOutPut = {"", ""};
         boolean loop = true;
@@ -29,7 +29,7 @@ public class Currancy5MethodsObject {
 
         Currency[] currencies = new Currency[4];
 
-        currencies = initCur();
+        currencies = initCur(args);
 
         introWelcome(currencies);
 
@@ -130,7 +130,7 @@ public class Currancy5MethodsObject {
         return valueFromTo;
     }
 
-    public static Currency[] initCur() {
+    public static Currency[] initCur(String[] arg) {
         //Инициализациа изначальных Валют
         double[] initValue = {1.0, 0.91735, 0.03033, 0.01022};
         double[] curValue = new double[initValue.length];
@@ -138,17 +138,30 @@ public class Currancy5MethodsObject {
 
         Currency[] c = new Currency[4];
 
-        c[0] = new Currency("EURO", 1.);
-        c[1] = new Currency("USD", 0.91735);
-        c[2] = new Currency("TL", 0.03033);
-        c[3] = new Currency("RUB", 0.01022);
-
-
-        /// почему то не сработал массиф из объйекта
         for (int i = 0; i < 4; i++) {
-            c[i] = new Currency(curName [i], initValue[i]);
+            c[i] = new Currency(curName[i], initValue[i]);
             System.out.println(c[i].name + " " + c[i].value);
         }
+        //проверка, заданы ли валюты в строке Аргументов.
+        //После название Валюты идёт её Стоимость в EURO
+        for (int i = 0; i < arg.length; i++) {
+            int j;
+            if (arg[i].equals("EURO:")) {
+                j = 0;
+                c[j].value = Double.parseDouble(arg[i + 1]);
+            } else if (arg[i].equals("USD:")) {
+                j = 1;
+                c[j].value = Double.parseDouble(arg[i + 1]);
+            } else if (arg[i].equals("TL:")) {
+                j = 2;
+                c[j].value = Double.parseDouble(arg[i + 1]);
+            } else if (arg[i].equals("RUB:")) {
+                j = 3;
+                c[j].value = Double.parseDouble(arg[i + 1]);
+            }
+            // проверяются только заданные Валюты, остальные игнорируются
+        }
+
         return c;
     }
 
