@@ -4,11 +4,11 @@ import l17.transport.*;
 
 public class L17Main {
     public static void main(String[] args) {
-        Man karl = new Man("Sergej", 42);
-        System.out.println(karl);
+        Man sergej = new Man("Sergej", 42);
+        System.out.println(sergej);
 
-        String s = karl.toString();         // оказывается тоже самое
-        System.out.println(s);
+//        String s = sergej.toString();         // оказывается тоже самое
+//        System.out.println(s);
 
 
         Woman anna = new Woman("Anna", 33);
